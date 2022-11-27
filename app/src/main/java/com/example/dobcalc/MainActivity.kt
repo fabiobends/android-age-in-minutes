@@ -12,8 +12,7 @@ import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val MILLISECONDS_MINUTES_RATIO = 60 * 1000;
-const val MAX_TIME = 86400000;
+const val MAX_TIME = 86400000; // 24 * 60 * 60 * 1000
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,10 +46,10 @@ class MainActivity : AppCompatActivity() {
       val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
       val date = dateFormat.parse(selectedDate)
       date?.let {
-        val selectedDateInMinutes = date.time / MILLISECONDS_MINUTES_RATIO
+        val selectedDateInMinutes = date.time / MAX_TIME
         val currentDate = dateFormat.parse(dateFormat.format(System.currentTimeMillis()))
         currentDate?.let {
-          val currentDateInMinutes = currentDate.time / MILLISECONDS_MINUTES_RATIO
+          val currentDateInMinutes = currentDate.time / MAX_TIME
           val difference = currentDateInMinutes - selectedDateInMinutes
           tvDateDifference?.text = difference.toString()
         }
